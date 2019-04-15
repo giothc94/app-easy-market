@@ -4,21 +4,32 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      List
+      Markets
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
-      <div class="item-note" slot="end">
-        {{item.note}}
+
+  <ion-row *ngFor="let item of itemsList">
+    <ion-card class="crd-flex">
+    <ion-col size="2" class="imgDistri">
+      <img src="{{item.downloadURL}}">
+    </ion-col>
+    <ion-col>
+      <div>
+        <ion-label> <b>{{item.nombre_comercial}}</b> </ion-label>
+        <p>{{item.descripcion}}</p>
+        <p><small>Direccion: {{item.direccion}}</small></p>
+        <p><small>Telefono: {{item.telefono}}</small></p>
       </div>
-    </ion-item>
-  </ion-list>
+    </ion-col>
+    <ion-col size="2" style="align-self: center;" (click)="entrarTienda(item.id)" >
+      <img src="https://firebasestorage.googleapis.com/v0/b/pagina-easy-market.appspot.com/o/assets%2Finiciar-la-sesion.svg?alt=media&token=e953733c-90f8-4a59-9091-2973a184f51b" alt="iniciar session" style="opacity: 0.50;">
+    </ion-col>
+  </ion-card>
+  </ion-row>
+
   <!--
     <div *ngIf="selectedItem" padding>
       You navigated here from <b>{{selectedItem.title }}</b>

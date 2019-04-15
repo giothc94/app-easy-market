@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ingresoTiendas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-label>nombre comercial</ion-label>
+    <ion-input type="text" [(ngModel)]="nombre_comercial"></ion-input>
+    <ion-label>Descripcion</ion-label>
+    <ion-input type="text" [(ngModel)]="descripcion"></ion-input>
+    <ion-label>direccion</ion-label>
+    <ion-input type="text" [(ngModel)]="direccion"></ion-input>
+    <ion-label>representante legal</ion-label>
+    <ion-input type="text" [(ngModel)]="representante_legal"></ion-input>
+    <ion-label>ruc</ion-label>
+    <ion-input type="text" [(ngModel)]="ruc"></ion-input>
+    <ion-label>telefono</ion-label>
+    <ion-input type="text" [(ngModel)]="telefono"></ion-input>
+    <input type="file" (change)="subir($event)">
+    <a href="{{downloadURL}}" >{{downloadURL}}</a>
+    <p>{{uploadPercent}}</p>
+</ion-content>

@@ -1,1 +1,11 @@
-
+.input-wrapper{
+    flex-direction: column;
+}
+.imgDistri{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(0,0,0,0.1);
+}

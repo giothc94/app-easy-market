@@ -1,5 +1,11 @@
+import { Platform } from '@ionic/angular';
+import { AngularFirebaseService } from './../services/angular-firebase.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
-
+import { Observable } from 'rxjs';
+import * as firebase from 'firebase'
+import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-list',
   templateUrl: 'list.page.html',
@@ -19,15 +25,22 @@ export class ListPage implements OnInit {
     'bluetooth',
     'build'
   ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  public items: Observable<any>;
+
+  itemsList = []
+  constructor(private afDB: AngularFirebaseService, private router:Router, private platform:Platform) {
+    // this.items = this.afDB.obtenerMarkets().get()
+    this.afDB.obtenerMarkets().snapshotChanges().subscribe(items=>{
+      items.forEach(data=>{
+        this.itemsList.push(data.payload.doc.data())
+      })
+      console.log(this.itemsList)
+    })
+    
+  }
+
+  entrarTienda(id){
+    this.router.navigate([`tienda/${id}`])
   }
 
   ngOnInit() {

@@ -16,10 +16,26 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
+      title: 'Markets',
       url: '/list',
       icon: 'list'
+    },
+    {
+      title: 'About',
+      url: '/about',
+      icon: 'list'
+    },
+    {
+      title: 'Ingreso de productos',
+      url: '/ingreso-productos',
+      icon: 'list'
+    },
+    {
+      title: 'Ingreso de markets',
+      url: '/ingreso-tiendas',
+      icon: 'list'
     }
+    
   ];
 
   constructor(

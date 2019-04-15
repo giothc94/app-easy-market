@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ingresoProductos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <input type="file" (change)="subir($event)">
+    <a href="{{downloadURL | async}}" >{{downloadURL | async}}</a>
+    <p>{{uploadPercent | async}}</p>
+</ion-content>

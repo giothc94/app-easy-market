@@ -1,0 +1,62 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Bienvenido a {{market.nombre_comercial}}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-slides pager="true" [options]="slideOpts" style="height: 100%;width: 100%">
+  <ion-slide class="slide-banner">
+    <h1>{{market.nombre_comercial}}</h1>
+    <div style="height: 40%;width: 100%">
+      <ion-slides pager="false" [options]="slideOpts" style="height: 100%;width: 100%">
+        <ion-slide class="w-100">
+          <img class="w-100" src="../../../assets/flayer.png" alt="">
+        </ion-slide>
+        <ion-slide>
+          <img class="w-100" src="../../../assets/flayer2.png" alt="">
+        </ion-slide>
+        <ion-slide>
+          <img class="w-100" src="../../../assets/flayer.png" alt="">
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-list-header>
+            <ion-label>
+              {{market.descripcion}}
+            </ion-label>
+          </ion-list-header>
+          <ion-item>
+            <ion-icon slot="end" name="logo-facebook"></ion-icon>
+            <ion-label>Buscanos en Facebook</ion-label>
+          </ion-item>
+
+          <div id="map_canvas">
+            <button ion-button>Demo</button>
+          </div>
+
+          <ion-item>
+            <ion-icon slot="end" name="logo-instagram"></ion-icon>
+            <ion-label>Siguenos en Instagram</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-slide>
+  <ion-slide>
+    <h1>Slide 2</h1>
+  </ion-slide>
+  <ion-slide>
+    <h1>Slide 3</h1>
+  </ion-slide>
+</ion-slides>
+<!-- <ion-row>
+  <ion-label padding>
+    {{market.descripcion}}
+  </ion-label>
+</ion-row> -->
+
+ionic cordova plugin add cordova-plugin-googlemaps \
+  --variable API_KEY_FOR_ANDROID="AIzaSyD8NKYKzbu_XTSPE6ENTlJqlrDhimxwifw" \
+  --variable API_KEY_FOR_IOS="AIzaSyD8NKYKzbu_XTSPE6ENTlJqlrDhimxwifw"

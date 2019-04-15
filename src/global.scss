@@ -9,3 +9,24 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400');
+.jcc{
+    justify-content: center;
+}
+.tac{
+    text-align: center;
+}
+.ffm{
+    font-family: 'Montserrat', sans-serif;
+}
+.fz-xl{
+    font-size: x-large;
+}
+.fd-c{
+    flex-direction: column !important;
+}
+.crd-flex{
+    display: flex;
+    width: 100%;
+    margin: 10px 15px 0px 15px;
+}
