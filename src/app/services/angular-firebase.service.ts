@@ -1,4 +1,3 @@
-import { Market } from './../interfaces/market';
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -18,7 +17,11 @@ export class AngularFirebaseService {
     return tarea
   }
 
-  guardarMarkets(market: Market) {
+  guardarProducto(producto){
+    return this.afDB.collection('productos-app').doc(`${producto.id}`).set(producto)
+  }
+
+  guardarMarkets(market) {
     return this.afDB.collection('markets-app').doc(`${market.id}`).set(market)
   }
 
@@ -28,5 +31,22 @@ export class AngularFirebaseService {
 
   obtenerMarket(id){
     return this.afDB.collection('markets-app').doc(id).snapshotChanges()
+  }
+
+  obtenerProductoPorMarket(id){
+    let ref = this.afDB.collection('productos-app').ref
+    return ref.where("marketIdProducto","==",id)
+  }
+
+  obtenerProductos(){
+    return this.afDB.collection('productos-app')
+  }
+
+  guardarCategoria(categoria){
+    return this.afDB.collection("categorias-app").doc(`${categoria.id}`).set(categoria)
+  }
+
+  obtenerCategorias(){
+    return this.afDB.collection('categorias-app')
   }
 }
