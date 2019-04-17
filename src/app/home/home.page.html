@@ -10,34 +10,47 @@
 </ion-header>
 
 <ion-content>
-    <ion-card class="welcome-card">
-      <ion-img src="/assets/EMnombre.png"></ion-img>
-      <ion-card-header>
-        <ion-card-subtitle>Bienvenido a </ion-card-subtitle>
-        <ion-card-title>Easy Market</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Date un recorrido por nuestras tiendas afiliadas, o mira todos los productos que tenemos en stock y empieza a comprar, fácil y sencillo</p>
-      </ion-card-content>
-    </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-          <ion-label> Que quieres hacer ?</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon name="cart" color="medium" slot="start"></ion-icon>
-        <ion-label>Empezar a comprar</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Ver categorías</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Recorrer tiendas </ion-label>
-      </ion-item>
-    </ion-list>
-    <div id="map_canvas">
-        <button ion-button>Demo</button>
-      </div>
+  <ion-card class="welcome-card">
+    <ion-img src="/assets/EMnombre.png"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>Bienvenido a </ion-card-subtitle>
+      <ion-card-title>Easy Market</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Date un recorrido por nuestras tiendas afiliadas, o mira todos los productos que tenemos en stock y empieza a
+        comprar, fácil y sencillo</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label> Que quieres hacer ?</ion-label>
+    </ion-list-header>
+    <ion-item (click)="redirectComprar()">
+      <ion-icon name="cart" color="medium" slot="start"></ion-icon>
+      <ion-label>Empezar a comprar</ion-label>
+      <img class="icon-home"
+        src="https://firebasestorage.googleapis.com/v0/b/pagina-easy-market.appspot.com/o/assets%2F_ionicons_svg_md-arrow-dropright.svg?alt=media&token=3db79336-1b9d-4763-9f11-1b1a8b310116"
+        alt="" slot="end">
+    </ion-item>
+    <ion-item (click)="redirectCategorias()">
+      <ion-icon slot="start" color="medium" name="build"></ion-icon>
+      <ion-label>Ver categorías</ion-label>
+      <img class="icon-home"
+        src="https://firebasestorage.googleapis.com/v0/b/pagina-easy-market.appspot.com/o/assets%2F_ionicons_svg_md-arrow-dropright.svg?alt=media&token=3db79336-1b9d-4763-9f11-1b1a8b310116"
+        alt="" slot="end">
+    </ion-item>
+    <ion-item (click)="redirectTiendas()">
+      <ion-icon slot="start" color="medium" name="grid"></ion-icon>
+      <ion-label>Recorrer tiendas </ion-label>
+      <img class="icon-home"
+        src="https://firebasestorage.googleapis.com/v0/b/pagina-easy-market.appspot.com/o/assets%2F_ionicons_svg_md-arrow-dropright.svg?alt=media&token=3db79336-1b9d-4763-9f11-1b1a8b310116"
+        alt="" slot="end">
+    </ion-item>
+  </ion-list>
+  <ion-label padding>
+    Mira todos nuestros afiliados !
+  </ion-label>
+  <div padding id="map_canvas" style="margin:15px; border-radius: 10px">
+
+  </div>
 </ion-content>
