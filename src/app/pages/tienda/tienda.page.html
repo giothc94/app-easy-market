@@ -19,23 +19,16 @@
         </ion-slide>
       </ion-slides>
     </div>
+    <div id="map_canvas">
+
+    </div>
     <ion-row>
       <ion-col size="12">
-        <ion-list>
-          <ion-list-header>
-            <ion-label>
-              {{market.descripcion}}
-            </ion-label>
-          </ion-list-header>
+        <ion-list style="margin-top: 15px;">
           <ion-item>
             <ion-icon slot="end" name="logo-facebook"></ion-icon>
             <ion-label>Buscanos en Facebook</ion-label>
           </ion-item>
-
-          <div id="map_canvas">
-            <button ion-button>Demo</button>
-          </div>
-
           <ion-item>
             <ion-icon slot="end" name="logo-instagram"></ion-icon>
             <ion-label>Siguenos en Instagram</ion-label>
@@ -44,19 +37,41 @@
       </ion-col>
     </ion-row>
   </ion-slide>
-  <ion-slide>
-    <h1>Slide 2</h1>
+  <ion-slide class="slide-banner slide-producto">
+    <h1>Productos</h1>
+    <ion-row *ngFor="let producto of productosDeLaTienda; let i = index">
+      <ion-card class="crd-flex">
+        <ion-col size="2" class="imgDistri">
+          <img src="{{producto.downloadURL}}">
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-label> <b>{{producto.nombreProductp}}</b> </ion-label>
+            <p>{{producto.descripcionProducto}}</p>
+            <p><small>Precio: {{producto.precioProducto}} x {{producto.pesoVentaProducto}}</small></p>
+            <p><small>Disponible {{producto.cantidadProducto}} {{producto.pesoVentaProducto}}</small></p>
+          </div>
+        </ion-col>
+        <ion-col size="2" slot="end" class="iconCar">
+          <ion-icon name="cart" style="width:100%; height: 80%;"></ion-icon>
+        </ion-col>
+      </ion-card>
+    </ion-row>
   </ion-slide>
-  <ion-slide>
-    <h1>Slide 3</h1>
+  <ion-slide class="slide-banner">
+    <h1>Promociones</h1>
+    <ion-row>
+      <ion-card>
+        <ion-col size="2">
+
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+        <ion-col>
+
+        </ion-col>
+      </ion-card>
+    </ion-row>
   </ion-slide>
 </ion-slides>
-<!-- <ion-row>
-  <ion-label padding>
-    {{market.descripcion}}
-  </ion-label>
-</ion-row> -->
-
-ionic cordova plugin add cordova-plugin-googlemaps \
-  --variable API_KEY_FOR_ANDROID="AIzaSyD8NKYKzbu_XTSPE6ENTlJqlrDhimxwifw" \
-  --variable API_KEY_FOR_IOS="AIzaSyD8NKYKzbu_XTSPE6ENTlJqlrDhimxwifw"

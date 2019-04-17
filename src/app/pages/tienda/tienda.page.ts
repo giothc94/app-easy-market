@@ -6,7 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import {
   GoogleMaps,
   GoogleMap,
-  GoogleMapsEvent
+  GoogleMapsEvent,
+  Marker
 } from '@ionic-native/google-maps/';
 
 @Component({
@@ -23,29 +24,49 @@ export class TiendaPage implements OnInit {
     effect: 'flip'
   };
 
+  productosDeLaTienda = []
+
   constructor(private activatedRoute:ActivatedRoute, private afDB:AngularFirebaseService, private platform:Platform) {
-    
-    this.platform.ready().then(()=>{
-      this.loadMap()
-    })
     
     let id = this.activatedRoute.snapshot.params.id
     this.afDB.obtenerMarket(id).subscribe(data=>{
       this.market = data.payload.data()
       console.log('Market',this.market)
+      this.platform.ready().then(()=>{
+        this.loadMap()
+      })
 
     })
+
+    this.afDB.obtenerProductoPorMarket(id).get().then(result=>{
+      result.forEach(resp=>{
+        this.productosDeLaTienda.push(resp.data())
+      })
+      console.log(this.productosDeLaTienda)
+    })
+    
     
   }
-
+  
   loadMap(){
     this.map = GoogleMaps.create('map_canvas')
+    this.map.setCameraZoom(15)
+    let marker: Marker = this.map.addMarkerSync({
+      title: `${this.market.nombre_comercial}`,
+      icon: 'blue',
+      animation: 'DROP',
+      position: {
+        lat: -0.2537994,
+        lng: -78.512753
+      }
+    });
+    marker.showInfoWindow()
     this.map.one(GoogleMapsEvent.MAP_READY)
       .then(this.onMapReady.bind(this))
   }
 
   onMapReady(){
-    console.log('map is ready')
+    console.log('mapa cargado correctamente')
   }
 
   ngOnInit() {
