@@ -1,3 +1,4 @@
+import { DetalleProductoComponent } from './../../components/detalle-producto/detalle-producto.component';
 import { PopoverCarritoComponent } from './../../components/popover-carrito/popover-carrito.component';
 import { AngularFirebaseService } from './../../services/angular-firebase.service';
 import { Component, OnInit } from '@angular/core';
@@ -32,6 +33,14 @@ export class ProductosPage implements OnInit {
     const modal = await this.modalController.create({
       component: PopoverCarritoComponent,
       componentProps:{listaCarrito: this.tempCarrito, listaProductos: this.productos}
+    })
+    return await modal.present()
+  }
+
+  async detalleProducto(id){
+    const modal = await this.modalController.create({
+      component: DetalleProductoComponent,
+      componentProps:{idProducto:`${id}`,listaProductos:this.productos}
     })
     return await modal.present()
   }

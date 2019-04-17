@@ -14,7 +14,7 @@
       <div class="card-prod-conten">
         {{producto.descripcionProducto}}
         <p><small>{{producto.cantidadProducto > 5 ? 'Disponible':'No disponible'}}</small></p>
-        <ion-badge color="warning" style="font-size: 13px">$ {{producto.precioProducto}}
+        <ion-badge color="warning" style="font-size: 13px" (click)="detalleProducto(producto.id)">$ {{producto.precioProducto}}
         </ion-badge>
         <label for="" style="margin: 5px">Cada {{producto.pesoVentaProducto}}</label>
       </div>

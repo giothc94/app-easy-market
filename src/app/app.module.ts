@@ -19,13 +19,15 @@ import { environment } from 'src/environments/environment';
 
 
 import { GoogleMaps } from '@ionic-native/google-maps';
+import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PopoverCarritoComponent,
+    DetalleProductoComponent
   ],
-  entryComponents: [PopoverCarritoComponent],
+  entryComponents: [PopoverCarritoComponent,DetalleProductoComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

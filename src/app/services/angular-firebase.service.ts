@@ -41,6 +41,9 @@ export class AngularFirebaseService {
   obtenerProductos() {
     return this.afDB.collection('productos-app')
   }
+  obtenerProductoPorId(id){
+    return this.afDB.collection('productos-app').doc(id).snapshotChanges()
+  }
 
   guardarCategoria(categoria) {
     return this.afDB.collection("categorias-app").doc(`${categoria.id}`).set(categoria)

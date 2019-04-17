@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="productos" (click)="cerrar()"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div class="detail-title">
+      {{producto.nombreProducto | uppercase}}
+    </div>
+    <div>
+      <img src="{{producto.downloadURL}}" alt="" style="display: flex;width: 200px;height: 200px;margin: auto;">
+    </div>
+    <div class="info-prod">
+      <ion-card style="width: 100%; text-align: center;border-radius: 0;background: #d3d3d352;">
+        <p>{{producto.descripcionProducto | uppercase}}</p>
+        <p>{{categoria.nombreCategoria}}</p>
+        <p>{{categoria.descripcionCategoria | uppercase}}</p>
+      </ion-card>
+    </div>
+    <ion-label padding>Informacion del market</ion-label>
+    <div>
+      <ion-card padding style="width: 100%; border-radius: 0; margin: 0; margin-top: 10px">
+        <ion-label>
+          Tienda:
+        </ion-label>
+        {{market.nombre_comercial}}
+        <ion-label>
+          Descripcion:
+        </ion-label>
+        {{market.descripcion}}
+        <ion-label>
+          Direccion:
+        </ion-label>
+        {{market.direccion}}
+        <ion-label>
+          Telefono:
+        </ion-label>
+        0{{market.telefono}}
+      </ion-card>
+    </div>
+    <ion-button expand="block">
+      Precio: {{producto.precioProducto}} cada {{producto.pesoVentaProducto}}
+    </ion-button>
+  </div>
+
+</ion-content>
