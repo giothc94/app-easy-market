@@ -17,7 +17,7 @@ export class AngularFirebaseService {
     return tarea
   }
 
-  guardarProducto(producto){
+  guardarProducto(producto) {
     return this.afDB.collection('productos-app').doc(`${producto.id}`).set(producto)
   }
 
@@ -29,24 +29,32 @@ export class AngularFirebaseService {
     return this.afDB.collection('markets-app')
   }
 
-  obtenerMarket(id){
+  obtenerMarket(id) {
     return this.afDB.collection('markets-app').doc(id).snapshotChanges()
   }
 
-  obtenerProductoPorMarket(id){
+  obtenerProductoPorMarket(id) {
     let ref = this.afDB.collection('productos-app').ref
-    return ref.where("marketIdProducto","==",id)
+    return ref.where("marketIdProducto", "==", id)
   }
 
-  obtenerProductos(){
+  obtenerProductos() {
     return this.afDB.collection('productos-app')
   }
 
-  guardarCategoria(categoria){
+  guardarCategoria(categoria) {
     return this.afDB.collection("categorias-app").doc(`${categoria.id}`).set(categoria)
   }
 
-  obtenerCategorias(){
+  obtenerCategorias() {
     return this.afDB.collection('categorias-app')
+  }
+
+  obtenerCategoria(id) {
+    return this.afDB.collection('categorias-app').doc(id).snapshotChanges()
+  }
+  obtenerProductoPorCategoria(id) {
+    let ref = this.afDB.collection('productos-app').ref
+    return ref.where("categoriaProducto", "==", id)
   }
 }

@@ -1,0 +1,29 @@
+.flex-conten {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+  }
+  .card-prod {
+    width: 115px;
+    border-radius: 15px;
+    border: 1px solid lightgrey;
+    box-shadow: 2px 4px 3px 1px #0001;
+    padding: 10px;
+    margin: 5px;
+    font-size: 10px
+  }
+  .card-prod-conten {
+    display: flex;
+    flex-direction: column;
+  }
+  .popover{
+    opacity: 0.8;
+  }
+  .card-img{
+  
+  }
+  .card-title{
+    height: 30px;
+    text-align: center;
+  }
