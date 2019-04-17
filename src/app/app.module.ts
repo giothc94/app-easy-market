@@ -1,3 +1,4 @@
+import { PopoverCarritoComponent } from './components/popover-carrito/popover-carrito.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,21 +17,20 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 
-import { AgmCoreModule } from '@agm/core';
 
-import {GoogleMaps} from '@ionic-native/google-maps'
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [
+    AppComponent,
+    PopoverCarritoComponent,
+  ],
+  entryComponents: [PopoverCarritoComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AgmCoreModule.forRoot({
-      apiKey: environment.apiKeyAgm
-    }),
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
@@ -45,4 +45,4 @@ import {GoogleMaps} from '@ionic-native/google-maps'
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

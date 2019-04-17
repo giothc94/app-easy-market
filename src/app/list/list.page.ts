@@ -28,6 +28,9 @@ export class ListPage implements OnInit {
   public items: Observable<any>;
 
   itemsList = []
+
+  query:any = ''
+
   constructor(private afDB: AngularFirebaseService, private router:Router, private platform:Platform) {
     // this.items = this.afDB.obtenerMarkets().get()
     this.afDB.obtenerMarkets().snapshotChanges().subscribe(items=>{
