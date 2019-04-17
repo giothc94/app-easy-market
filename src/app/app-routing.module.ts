@@ -18,7 +18,11 @@ const routes: Routes = [
   { path: 'about', loadChildren: './pages/about/about.module#AboutPageModule' },
   { path: 'ingreso-productos', loadChildren: './pages/ingreso-productos/ingreso-productos.module#IngresoProductosPageModule' },
   { path: 'ingreso-tiendas', loadChildren: './pages/ingreso-tiendas/ingreso-tiendas.module#IngresoTiendasPageModule' },
-  { path: 'tienda/:id', loadChildren: './pages/tienda/tienda.module#TiendaPageModule' }
+  { path: 'tienda/:id', loadChildren: './pages/tienda/tienda.module#TiendaPageModule' },
+  { path: 'categorias', loadChildren: './pages/categorias/categorias.module#CategoriasPageModule' },
+  { path: 'productos', loadChildren: './pages/productos/productos.module#ProductosPageModule' },
+  { path: 'ingreso-categoria', loadChildren: './pages/ingreso-categoria/ingreso-categoria.module#IngresoCategoriaPageModule' },
+  { path: 'producto-categoria/:idCategoria', loadChildren: './pages/producto-categoria/producto-categoria.module#ProductoCategoriaPageModule' }
 ];
 
 @NgModule({
