@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Ingresa categorias</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-label>categoria</ion-label>
+      <ion-input type="text" [(ngModel)]="nombreCategoria"></ion-input>
+      <ion-label>Descripcion</ion-label>
+      <ion-input type="text" [(ngModel)]="descripcionCategoria"></ion-input>
+      
+      <input type="file" (change)="subir($event)">
+      <a href="{{downloadURL}}" >{{downloadURL}}</a>
+      <p>{{uploadPercent}}</p>
+  </ion-content>
