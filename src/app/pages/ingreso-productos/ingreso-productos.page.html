@@ -4,8 +4,45 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <input type="file" (change)="subir($event)">
-    <a href="{{downloadURL | async}}" >{{downloadURL | async}}</a>
-    <p>{{uploadPercent | async}}</p>
+<ion-content padding>
+  <ion-label>nombre producto</ion-label>
+  <ion-input type="text" [(ngModel)]="nombreProducto"></ion-input>
+
+  <ion-label>descripcion</ion-label>
+  <ion-input type="text" [(ngModel)]="descripcionProducto"></ion-input>
+
+  <ion-label>precio</ion-label>
+  <ion-input type="text" [(ngModel)]="precioProducto"></ion-input>
+
+  <ion-label>tienda</ion-label>
+  <ion-select placeholder="Seleccione el producto" [(ngModel)]="marketIdProducto">
+    <ng-container *ngFor="let market of markets">
+      <ion-select-option value="{{market.id}}">{{market.nombre_comercial}}</ion-select-option>
+    </ng-container>
+  </ion-select>
+  <ion-label>Venta x peso</ion-label>
+  <ion-select placeholder="Seleccione tipo" [(ngModel)]="pesoVentaProducto">
+    <ion-select-option value="libra">venta x libra</ion-select-option>
+    <ion-select-option value="kilo">venta x kilo</ion-select-option>
+  </ion-select>
+
+  <ion-label>cantidad</ion-label>
+  <ion-input type="text" [(ngModel)]="cantidadProducto"></ion-input>
+
+  <ion-label>cantidad por</ion-label>
+  <ion-select placeholder="Cantidad por" [(ngModel)]="pesoVentaProducto">
+    <ion-select-option value="libra">libra</ion-select-option>
+    <ion-select-option value="kilo">kilo</ion-select-option>
+  </ion-select>
+
+  <ion-label>categoria</ion-label>
+  <ion-select placeholder="Categorias" [(ngModel)]="categoriaProducto">
+    <ng-container *ngFor="let categoria of categorias">
+      <ion-select-option value="{{categoria.id}}">{{categoria.nombreCategoria}}</ion-select-option>
+    </ng-container>
+  </ion-select>
+
+  <input type="file" (change)="subir($event)">
+  <a href="{{downloadURL}}">{{downloadURL}}</a>
+  <p>{{uploadPercent}}</p>
 </ion-content>

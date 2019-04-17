@@ -1,10 +1,9 @@
-import { Market } from './../../interfaces/market';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFirebaseService } from 'src/app/services/angular-firebase.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
-import * as firebase from 'firebase'
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-ingreso-tiendas',
@@ -39,9 +38,7 @@ export class IngresoTiendasPage implements OnInit {
     this.market.telefono = this.telefono
     const file = event.target.files[0]
     const filepath = 'markets'
-    const ref = firebase.storage().ref()//(`${filepath}/${file.name}`)
-    // const task = ref.put(file)
-    // const task = this.storage.upload(filepath, file);
+    const ref = firebase.storage().ref()
     this.uploadTask = ref.child(`${filepath}/${file.name}`).put(file)
 
     this.uploadTask.on(
