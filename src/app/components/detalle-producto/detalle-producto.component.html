@@ -21,30 +21,34 @@
         <p>{{categoria.descripcionCategoria | uppercase}}</p>
       </ion-card>
     </div>
-    <ion-label padding>Informacion del market</ion-label>
+    <ion-label padding>
+      Primero selecciona una cantidad: <ion-label>{{cantidad}}</ion-label>
+    </ion-label>
+    <ion-label>
+      <ion-range min="1" max="5" ticks="true" step="1" snaps="true" pin="true" mode="md" [(ngModel)]="cantidad"></ion-range>
+    </ion-label>
+    <div class="precio-detalle">
+      <ion-label style="align-self: center;">
+        Precio: {{producto.precioProducto}} cada {{producto.pesoVentaProducto}} <ion-label *ngIf="cantidad" > x {{cantidad}} = {{producto.precioProducto * cantidad | currency}}</ion-label>
+      </ion-label>
+      <ion-icon name="cart" slot="end" class="icon-detalle" (click)="agregarACarrito()" *ngIf="cantidad" ></ion-icon>
+    </div>
     <div>
       <ion-card padding style="width: 100%; border-radius: 0; margin: 0; margin-top: 10px">
-        <ion-label>
-          Tienda:
-        </ion-label>
-        {{market.nombre_comercial}}
-        <ion-label>
-          Descripcion:
-        </ion-label>
-        {{market.descripcion}}
-        <ion-label>
-          Direccion:
-        </ion-label>
-        {{market.direccion}}
-        <ion-label>
-          Telefono:
-        </ion-label>
-        0{{market.telefono}}
+        <ion-card-subtitle>Acerca de</ion-card-subtitle>
+        <p style="text-align: center">
+          Team {{market.nombre_comercial | uppercase}}
+        </p>
+        <p>
+          {{market.descripcion}}
+        </p>
+        <p>
+          Direccion y telefonos:
+        </p>
+        {{market.direccion}}<br>
+        {{market.telefono}}
       </ion-card>
     </div>
-    <ion-button expand="block">
-      Precio: {{producto.precioProducto}} cada {{producto.pesoVentaProducto}}
-    </ion-button>
   </div>
 
 </ion-content>

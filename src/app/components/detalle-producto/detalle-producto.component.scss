@@ -1,12 +1,26 @@
-.info-prod{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}   
-.detail-title{
-    text-align: center;
-    height: 30px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+.info-prod {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.detail-title {
+  text-align: center;
+  height: 30px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.precio-detalle {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgb(23, 208, 79);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 5px 3px;
+  box-shadow: 2px 3px 4px 1px #0001;
+  background-color: rgb(23, 208, 79);
+}
+.icon-detalle{
+    width: 25px;
+    height: 25px;
 }

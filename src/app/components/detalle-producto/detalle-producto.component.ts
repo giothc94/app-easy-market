@@ -19,6 +19,11 @@ export class DetalleProductoComponent implements OnInit {
 
   categoria
 
+  cantidad
+
+
+  flag = false
+
   constructor(private navParams:NavParams, private modalController:ModalController, private afDB:AngularFirebaseService) { 
     this.productos = this.navParams.get('listaProductos')
     this.productoId = this.navParams.get('idProducto')
@@ -41,6 +46,18 @@ export class DetalleProductoComponent implements OnInit {
   }
   cerrar(){
     this.modalController.dismiss()
+  }
+
+  agregarACarrito(){
+    console.log(this.cantidad,this.producto,this.productos.length)
+  }
+
+  activateProd(){
+    if (this.cantidad) {
+      this.flag = true
+      console.log(this.flag)
+
+    }
   }
 
 }
