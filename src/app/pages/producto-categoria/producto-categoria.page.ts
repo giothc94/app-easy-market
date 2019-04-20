@@ -1,3 +1,4 @@
+import { DetalleProductoComponent } from './../../components/detalle-producto/detalle-producto.component';
 import { ModalController } from '@ionic/angular';
 import { AngularFirebaseService } from 'src/app/services/angular-firebase.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,9 +17,9 @@ export class ProductoCategoriaPage implements OnInit {
   productos = []
 
   idCategoria
-  
+
   constructor(private router: Router, private activeRouter: ActivatedRoute, private afDB: AngularFirebaseService, public modalController: ModalController) {
-    
+
     this.idCategoria = this.activeRouter.snapshot.params['idCategoria']
     this.buscarProductos()
   }
@@ -42,6 +43,13 @@ export class ProductoCategoriaPage implements OnInit {
     const modal = await this.modalController.create({
       component: PopoverCarritoComponent,
       componentProps: { listaCarrito: '', listaProductos: this.productos }
+    })
+    return await modal.present()
+  }
+  async detalleProducto(id) {
+    const modal = await this.modalController.create({
+      component: DetalleProductoComponent,
+      componentProps: { idProducto: `${id}`, listaProductos: this.productos,return: `producto-categoria/${this.idCategoria}` }
     })
     return await modal.present()
   }

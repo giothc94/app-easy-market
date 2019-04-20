@@ -1,6 +1,7 @@
 import { AngularFirebaseService } from './../../services/angular-firebase.service';
 import { Component, OnInit } from '@angular/core';
-import { NavParams, ModalController } from '@ionic/angular';
+import { NavParams, ModalController, NavController } from '@ionic/angular';
+import { Route } from '@angular/router';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -21,12 +22,14 @@ export class DetalleProductoComponent implements OnInit {
 
   cantidad
 
+  navigate
 
   flag = false
 
-  constructor(private navParams:NavParams, private modalController:ModalController, private afDB:AngularFirebaseService) { 
+  constructor(private navParams:NavParams, private modalController:ModalController, private afDB:AngularFirebaseService, private navController:NavController) { 
     this.productos = this.navParams.get('listaProductos')
     this.productoId = this.navParams.get('idProducto')
+    this.navigate = this.navParams.get('return')
     this.afDB.obtenerProductoPorId(this.productoId).subscribe(resp=>{
       this.producto = resp.payload.data()
       console.log(this.producto)
@@ -45,6 +48,7 @@ export class DetalleProductoComponent implements OnInit {
 
   }
   cerrar(){
+    console.log(this.navigate)
     this.modalController.dismiss()
   }
 

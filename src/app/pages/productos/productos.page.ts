@@ -46,7 +46,7 @@ export class ProductosPage implements OnInit {
   async detalleProducto(id){
     const modal = await this.modalController.create({
       component: DetalleProductoComponent,
-      componentProps:{idProducto:`${id}`,listaProductos:this.productos}
+      componentProps:{idProducto:`${id}`,listaProductos:this.productos,return: `productos`}
     })
     return await modal.present()
   }
