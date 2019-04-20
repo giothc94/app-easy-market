@@ -9,15 +9,21 @@ import { AngularFirebaseService } from 'src/app/services/angular-firebase.servic
 })
 export class CategoriasPage implements OnInit {
 
+  query = ''
+
   categorias = []
 
   constructor(private afDB: AngularFirebaseService, private router:Router) {
+    this.obtenerCategorias()
+  }
+
+  obtenerCategorias(){
+    this.categorias = []
     this.afDB.obtenerCategorias().snapshotChanges().subscribe(data => {
       data.forEach(cat => {
         this.categorias.push(cat.payload.doc.data())
       })
     })
-    console.log(this.categorias)
   }
 
   entrarCategoria(categoria) {
@@ -27,4 +33,10 @@ export class CategoriasPage implements OnInit {
   ngOnInit() {
   }
 
+  doRefresh(event) {
+    setTimeout(() => {
+      this.obtenerCategorias()
+      event.target.complete();
+    }, 3000);
+  }
 }

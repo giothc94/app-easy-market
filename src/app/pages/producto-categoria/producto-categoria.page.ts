@@ -18,20 +18,21 @@ export class ProductoCategoriaPage implements OnInit {
 
   idCategoria
 
+  query = ''
+
   constructor(private router: Router, private activeRouter: ActivatedRoute, private afDB: AngularFirebaseService, public modalController: ModalController) {
 
+  }
+  
+  ngOnInit() {
     this.idCategoria = this.activeRouter.snapshot.params['idCategoria']
     this.buscarProductos()
-  }
-
-  ngOnInit() {
     this.afDB.obtenerCategoria(this.idCategoria).subscribe(categoria => {
       this.categoria = categoria.payload.data()
-      // console.log(this.categoria)
     })
   }
-
   buscarProductos() {
+    this.productos = []
     this.afDB.obtenerProductoPorCategoria(this.idCategoria).get()
       .then(result => {
         result.forEach(producto => {
@@ -52,5 +53,11 @@ export class ProductoCategoriaPage implements OnInit {
       componentProps: { idProducto: `${id}`, listaProductos: this.productos,return: `producto-categoria/${this.idCategoria}` }
     })
     return await modal.present()
+  }
+  doRefresh(event) {
+    setTimeout(() => {
+      this.buscarProductos()
+      event.target.complete();
+    }, 3000);
   }
 }

@@ -14,7 +14,8 @@
       <div class="card-title">
         <ion-label>{{producto.nombreProducto | uppercase}}</ion-label>
       </div>
-      <img src="{{producto.downloadURL}}" alt="" class="card-img">
+      <ion-img [src]="producto.downloadURL" ></ion-img>
+      <!-- <img src="{{producto.downloadURL}}" alt="" class="card-img"> -->
       <div class="card-prod-conten">
         {{producto.descripcionProducto}}
         <p><small>{{producto.cantidadProducto > 5 ? 'Disponible':'No disponible'}}</small></p>

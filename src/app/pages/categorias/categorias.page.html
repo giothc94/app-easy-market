@@ -10,7 +10,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-row *ngFor="let categoria of categorias" (click)="entrarCategoria(categoria.id)" >
+  <ion-searchbar [(ngModel)]="query"></ion-searchbar>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-row *ngFor="let categoria of categorias | search:query" (click)="entrarCategoria(categoria.id)">
     <ion-card class="card-prod">
       <ion-col size="6" class="col-img-prod">
         <img src="{{categoria.downloadURL}}" alt="" class="img-prod">
