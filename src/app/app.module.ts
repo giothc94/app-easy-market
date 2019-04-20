@@ -37,7 +37,7 @@ import { DetalleProductoComponent } from './components/detalle-producto/detalle-
     AngularFireStorageModule,
     AngularFireAuthModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     StatusBar,

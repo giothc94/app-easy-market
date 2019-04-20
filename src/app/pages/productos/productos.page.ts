@@ -17,16 +17,22 @@ export class ProductosPage implements OnInit {
 
   tempCarrito = []
 
+  query = ''
+
   constructor(private afDB: AngularFirebaseService, public modalController: ModalController) {
+    this.obtenerProductos()
+  }
+
+  ngOnInit() {
+  }
+
+  obtenerProductos(){
+    this.productos = []
     this.afDB.obtenerProductos().snapshotChanges().subscribe(data => {
       data.forEach(prod => {
         this.productos.push(prod.payload.doc.data())
       })
     })
-    console.log(this.productos)
-  }
-
-  ngOnInit() {
   }
 
   async popoverCarrito(ev: any) {
@@ -63,5 +69,12 @@ export class ProductosPage implements OnInit {
         }
       });
     }
+  }
+
+  doRefresh(event) {
+    setTimeout(() => {
+      this.obtenerProductos()
+      event.target.complete();
+    }, 3000);
   }
 }
