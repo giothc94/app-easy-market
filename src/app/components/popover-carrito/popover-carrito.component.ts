@@ -18,7 +18,13 @@ export class PopoverCarritoComponent implements OnInit {
 
   listaRender = []
 
+  precioTotal:number = 0
+
   constructor(private navParams: NavParams, private modalController: ModalController, private storage: Storage) {
+    
+  }
+  
+  ngOnInit() { 
     this.listaProductos = this.navParams.get('listaProductos')
     this.navigate = this.navParams.get('return')
     this.storage.keys().then(keys => {
@@ -28,21 +34,20 @@ export class PopoverCarritoComponent implements OnInit {
             this.listaCarrito.push(producto)
           }
         })
-
+  
       })
     }).then(()=>{
       this.listaCarrito.forEach(producto=>{
         this.storage.get(producto.id).then(item=>{
           producto.cantidadCompra = item
+          this.precioTotal += (producto.cantidadCompra * parseFloat(producto.precioProducto))
+          console.log(this.precioTotal,producto.cantidadCompra,parseFloat(producto.precioProducto))
           this.listaRender.push(producto)
         })
       })
       console.log('Lista render',this.listaRender)
     })
-
   }
-
-  ngOnInit() { }
 
   buscarProductos() {
     this.listaProductos

@@ -17,8 +17,11 @@
       Tus productos
     </ion-list-header>
     <ion-item *ngFor="let producto of listaRender">
-      <label>{{producto.nombreProducto}}</label>
+      <label>{{producto.nombreProducto | uppercase}}</label>
       <label for="" slot="end" > <ion-badge>{{producto.cantidadCompra}}u</ion-badge> {{producto.cantidadCompra * producto.precioProducto | currency}} </label>
     </ion-item>
   </ion-list>
+  <ion-footer *ngIf="listaRender.length > 0" >
+    <ion-button color="success" expand="block">Hacer compra por <b style="margin:15px;">{{precioTotal | currency}}</b> </ion-button>
+  </ion-footer>
 </ion-content>

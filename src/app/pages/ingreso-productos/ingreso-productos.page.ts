@@ -16,7 +16,7 @@ export class IngresoProductosPage implements OnInit {
   downloadURL
   nombreProducto
   descripcionProducto
-  precioProducto
+  precioProducto:number
   cantidadProducto
   categoriaProducto
   marketIdProducto

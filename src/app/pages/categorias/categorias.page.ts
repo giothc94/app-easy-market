@@ -14,11 +14,11 @@ export class CategoriasPage implements OnInit {
   categorias = []
 
   constructor(private afDB: AngularFirebaseService, private router:Router) {
+    this.categorias = []
     this.obtenerCategorias()
   }
 
   obtenerCategorias(){
-    this.categorias = []
     this.afDB.obtenerCategorias().snapshotChanges().subscribe(data => {
       data.forEach(cat => {
         this.categorias.push(cat.payload.doc.data())
