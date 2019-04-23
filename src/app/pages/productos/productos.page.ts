@@ -3,6 +3,7 @@ import { PopoverCarritoComponent } from './../../components/popover-carrito/popo
 import { AngularFirebaseService } from './../../services/angular-firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-productos',
@@ -38,7 +39,7 @@ export class ProductosPage implements OnInit {
   async popoverCarrito(ev: any) {
     const modal = await this.modalController.create({
       component: PopoverCarritoComponent,
-      componentProps:{listaCarrito: this.tempCarrito, listaProductos: this.productos}
+      componentProps:{listaProductos:this.productos,return:`productos`}
     })
     return await modal.present()
   }

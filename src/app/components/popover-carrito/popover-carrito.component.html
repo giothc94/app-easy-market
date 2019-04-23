@@ -1,8 +1,24 @@
-<ion-list padding>
- <ion-button expand = "block" (click)="cerrar()" >
-   Cerrar
- </ion-button>
-  <ion-item>
-
- </ion-item>
-</ion-list>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="{{navigate}}" (click)="cerrar()"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="listaRender.length > 0" slot="end" (click)="limpiarCarrito()" style="color:crimson; padding: 10px;">
+      Vaciar carrito
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-title style="padding: 0;">
+    <label *ngIf="listaRender.length == 0">No has agregado ningun producto</label>
+  </ion-title>
+  <ion-list *ngIf="listaRender.length > 0" >
+    <ion-list-header>
+      Tus productos
+    </ion-list-header>
+    <ion-item *ngFor="let producto of listaRender">
+      <label>{{producto.nombreProducto}}</label>
+      <label for="" slot="end" > <ion-badge>{{producto.cantidadCompra}}u</ion-badge> {{producto.cantidadCompra * producto.precioProducto | currency}} </label>
+    </ion-item>
+  </ion-list>
+</ion-content>

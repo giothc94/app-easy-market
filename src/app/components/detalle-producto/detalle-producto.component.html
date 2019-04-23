@@ -19,25 +19,40 @@
         <p>{{producto.descripcionProducto | uppercase}}</p>
         <p>{{categoria.nombreCategoria}}</p>
         <p>{{categoria.descripcionCategoria | uppercase}}</p>
+        <p>
+          <label class="star-point" for="r1">★</label>
+          <input class="input-star-point" type="radio" id="r1" [(ngModel)]="star" value="5">
+          <label class="star-point" for="r2">★</label>
+          <input class="input-star-point" type="radio" id="r2" [(ngModel)]="star" value="4">
+          <label class="star-point" for="r3">★</label>
+          <input class="input-star-point" type="radio" id="r3" [(ngModel)]="star" value="3">
+          <label class="star-point" for="r4">★</label>
+          <input class="input-star-point" type="radio" id="r4" [(ngModel)]="star" value="2">
+          <label class="star-point" for="r5">★</label>
+          <input class="input-star-point" type="radio" id="r5" [(ngModel)]="star" value="1">
+        </p>
+        <ion-button *ngIf="star" expand="block" (click)="test()" >Enviar calificacion</ion-button>
       </ion-card>
     </div>
     <ion-label padding>
       Primero selecciona una cantidad: <ion-label>{{cantidad}}</ion-label>
     </ion-label>
     <ion-label>
-      <ion-range min="1" max="5" ticks="true" step="1" snaps="true" pin="true" mode="md" [(ngModel)]="cantidad"></ion-range>
+      <ion-range min="1" max="5" ticks="true" step="1" snaps="true" pin="true" mode="ios" [(ngModel)]="cantidad">
+      </ion-range>
     </ion-label>
     <div class="precio-detalle">
       <ion-label style="align-self: center;">
-        Precio: {{producto.precioProducto}} cada {{producto.pesoVentaProducto}} <ion-label *ngIf="cantidad" > x {{cantidad}} = {{producto.precioProducto * cantidad | currency}}</ion-label>
+        Precio: {{producto.precioProducto}} cada {{producto.pesoVentaProducto}} <ion-label *ngIf="cantidad"> x
+          {{cantidad}} = {{producto.precioProducto * cantidad | currency}}</ion-label>
       </ion-label>
-      <ion-icon name="cart" slot="end" class="icon-detalle" (click)="agregarACarrito()" *ngIf="cantidad" ></ion-icon>
+      <ion-icon name="cart" slot="end" class="icon-detalle" (click)="agregarACarrito()" *ngIf="cantidad"></ion-icon>
     </div>
     <div>
       <ion-card padding style="width: 100%; border-radius: 0; margin: 0; margin-top: 10px">
         <ion-card-subtitle>Acerca de</ion-card-subtitle>
         <p style="text-align: center">
-          Team {{market.nombre_comercial | uppercase}}
+          {{market.nombre_comercial | uppercase}}
         </p>
         <p>
           {{market.descripcion}}
@@ -50,5 +65,4 @@
       </ion-card>
     </div>
   </div>
-
 </ion-content>

@@ -21,6 +21,8 @@ import { environment } from 'src/environments/environment';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { DetalleProductoComponent } from './components/detalle-producto/detalle-producto.component';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,7 @@ import { DetalleProductoComponent } from './components/detalle-producto/detalle-
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    IonicStorageModule.forRoot(),
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,

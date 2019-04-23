@@ -20,7 +20,22 @@
   box-shadow: 2px 3px 4px 1px #0001;
   background-color: rgb(23, 208, 79);
 }
-.icon-detalle{
-    width: 25px;
-    height: 25px;
+.icon-detalle {
+  width: 25px;
+  height: 25px;
+}
+.star-point {
+  color: gray;
+  font-size: 30px;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+.input-star-point {
+  display: none;
+}
+.star-point:hover {
+  color: orange;
+}
+.star-point:hover ~ .star-point {
+  color: orange;
 }

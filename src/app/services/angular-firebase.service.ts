@@ -60,4 +60,5 @@ export class AngularFirebaseService {
     let ref = this.afDB.collection('productos-app').ref
     return ref.where("categoriaProducto", "==", id)
   }
+  
 }
