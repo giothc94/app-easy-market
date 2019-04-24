@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="header-registro">
+    <img src="{{user.photoUrl}}" alt="">
+  </div>
+  <p *ngIf="!status" padding style="color:red">* Debes rellenar los campos faltantes</p>
+  <form padding [formGroup]="formUser" (ngSubmit)="registrar()">
+    <ion-label style="font-size: 20px">Nombres</ion-label>
+    <ion-input class="input-registro" padding type="text" formControlName="nombres" [(ngModel)]="user.displayName">
+    </ion-input>
+
+    <ion-label style="font-size: 20px">Cedula</ion-label>
+    <ion-input class="input-registro" padding type="text" formControlName="cedula" [(ngModel)]="user.cedula">
+    </ion-input>
+
+    <ion-label style="font-size: 20px">Telefono</ion-label>
+    <ion-input class="input-registro" padding type="text" formControlName="telefono" [(ngModel)]="user.phoneNumber">
+    </ion-input>
+
+    <ion-label style="font-size: 20px">Email</ion-label>
+    <ion-input class="input-registro" padding type="email" formControlName="email" [(ngModel)]="user.email">
+    </ion-input>
+
+    <input type="hidden" formControlName="id" [(ngModel)]="user.id" >
+    <input type="hidden" formControlName="imgUser" [(ngModel)]="user.photoUrl" >
+
+    <ion-button expand="block" type="submit">Completar registro</ion-button>
+  </form>
+</ion-content>
