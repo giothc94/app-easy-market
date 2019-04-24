@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="login-img">
+    <img src="../../assets/EMlogopng.png" alt="logo-app">
+  </div> 
+  <div class="login-content">
+    <div class="login-buttons">
+      <button class="login-button" (click)="loginFacebook()" >
+        <label style="margin: 0 20px;padding: 6px;">Iniciar con facebook</label>
+        <ion-icon name="logo-facebook" slot="end" style="font-size: 30px" ></ion-icon>
+      </button>
+    </div>
+    <ion-button (click)="isLogged()" >Comprobar</ion-button>
+    <ion-button (click)="logOut()" >logout</ion-button>
+  </div>
+</ion-content>
