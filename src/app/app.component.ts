@@ -1,9 +1,11 @@
+import { LoginService } from './services/login/login.service';
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Environment } from '@ionic-native/google-maps/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -41,18 +43,30 @@ export class AppComponent {
       url: '/ingreso-categoria',
       icon: 'list'
     }
-    
+
   ];
+
+  usuario:any={}
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private router: Router,
+    private loginService: LoginService
   ) {
     this.initializeApp();
+
+    this.loginService.isLoggedInApp()
+      .subscribe(resp => {
+        this.usuario.displayName = resp.displayName
+        this.usuario.photoURL = resp.photoURL
+        this.usuario.email = resp.email
+      })
   }
 
   initializeApp() {
+    this.router.navigate(['login'])
     this.platform.ready().then(() => {
       Environment.setEnv({
         'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyD8NKYKzbu_XTSPE6ENTlJqlrDhimxwifw',
@@ -62,4 +76,6 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+
 }

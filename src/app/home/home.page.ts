@@ -1,4 +1,4 @@
-import { Platform } from '@ionic/angular';
+import { Platform, MenuController, NavParams, NavController } from '@ionic/angular';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -14,13 +14,20 @@ import { Router } from '@angular/router';
 export class HomePage implements OnInit {
   map: GoogleMap;
 
-  constructor(private platform: Platform, private router: Router) {
+  constructor(private platform: Platform, 
+    private menuCtrl: MenuController, 
+    private router: Router,
+    ) {
 
   }
 
   async ngOnInit() {
+    this.menuCtrl.enable(true)
     await this.platform.ready()
     await this.loadMap()
+  }
+
+  ionViewWillEnter() {
   }
 
   loadMap() {

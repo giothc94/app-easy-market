@@ -7,6 +7,17 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
+        <ion-row>
+          <ion-col size="4">
+            <div style="width: 100%;height: 100%;">
+              <img [src]="[usuario.photoURL]" style="width: 100%;border-radius: 50%;border: 2px solid #f55353;">
+            </div>
+          </ion-col>
+          <ion-col size="8">
+            <p style="margin-bottom: 0;"><b>{{usuario.displayName}}</b></p>
+            <p style="margin-top: 0;"><small>{{usuario.email}}</small></p>
+          </ion-col>
+        </ion-row>
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">

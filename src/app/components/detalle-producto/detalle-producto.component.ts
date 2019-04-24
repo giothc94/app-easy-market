@@ -32,10 +32,13 @@ export class DetalleProductoComponent implements OnInit {
 
   tempCarrito = []
 
+  marketDetalle
+
   constructor(private platform: Platform, private navParams: NavParams, private modalController: ModalController, private afDB: AngularFirebaseService, private navController: NavController, private storage: Storage) {
     this.productos = this.navParams.get('listaProductos')
     this.productoId = this.navParams.get('idProducto')
     this.navigate = this.navParams.get('return')
+    this.marketDetalle = this.navParams.get('marketDetalle') ? false : true
   }
 
   ngOnInit() {

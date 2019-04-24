@@ -88,5 +88,11 @@
     </plugin>
     <allow-navigation href="http://192.168.1.52:8100" sessionid="58faa0b7" />
     <allow-navigation href="http://192.168.10.161:8100" sessionid="2445f43f" />
+    <plugin name="cordova-plugin-facebook4" spec="4.2.1">
+        <variable name="APP_ID" value="314852635856616" />
+        <variable name="APP_NAME" value="Easy Market" />
+        <variable name="FACEBOOK_HYBRID_APP_EVENTS" value="false" />
+        <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.40.0" />
+    </plugin>
     <engine name="android" spec="^7.1.4" />
 </widget>

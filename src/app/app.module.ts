@@ -1,3 +1,4 @@
+import { Facebook } from '@ionic-native/facebook/ngx';
 import { PopoverCarritoComponent } from './components/popover-carrito/popover-carrito.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -46,6 +47,7 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     GoogleMaps,
+    Facebook,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

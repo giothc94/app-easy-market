@@ -12,27 +12,13 @@ import { Router } from '@angular/router';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Observable<any>;
-
+  
   itemsList = []
 
   query:any = ''
 
   constructor(private afDB: AngularFirebaseService, private router:Router, private platform:Platform) {
-    // this.items = this.afDB.obtenerMarkets().get()
+    this.itemsList = []
     this.afDB.obtenerMarkets().snapshotChanges().subscribe(items=>{
       items.forEach(data=>{
         this.itemsList.push(data.payload.doc.data())
