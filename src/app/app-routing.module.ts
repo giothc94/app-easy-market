@@ -18,7 +18,9 @@ const routes: Routes = [
   { path: 'ingreso-categoria', loadChildren: './pages/ingreso-categoria/ingreso-categoria.module#IngresoCategoriaPageModule' },
   { path: 'producto-categoria/:idCategoria', loadChildren: './pages/producto-categoria/producto-categoria.module#ProductoCategoriaPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'registro', loadChildren: './registro/registro.module#RegistroPageModule' }
+  { path: 'registro', loadChildren: './registro/registro.module#RegistroPageModule' },
+  { path: 'efectuar-compra', loadChildren: './pages/efectuar-compra/efectuar-compra.module#EfectuarCompraPageModule' },
+  { path: 'listas-usuario', loadChildren: './pages/listas-usuario/listas-usuario.module#ListasUsuarioPageModule' }
 ];
 
 @NgModule({
