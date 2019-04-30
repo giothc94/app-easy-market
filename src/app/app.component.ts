@@ -24,25 +24,30 @@ export class AppComponent {
       icon: 'list'
     },
     {
+      title: 'Mis listas',
+      url: '/listas-usuario',
+      icon: 'list'
+    },
+    {
       title: 'About',
       url: '/about',
       icon: 'list'
-    },
-    {
-      title: 'Ingreso de productos',
-      url: '/ingreso-productos',
-      icon: 'list'
-    },
-    {
-      title: 'Ingreso de markets',
-      url: '/ingreso-tiendas',
-      icon: 'list'
-    },
-    {
-      title: 'Ingreso de categorias',
-      url: '/ingreso-categoria',
-      icon: 'list'
     }
+    // {
+    //   title: 'Ingreso de productos',
+    //   url: '/ingreso-productos',
+    //   icon: 'list'
+    // },
+    // {
+    //   title: 'Ingreso de markets',
+    //   url: '/ingreso-tiendas',
+    //   icon: 'list'
+    // },
+    // {
+    //   title: 'Ingreso de categorias',
+    //   url: '/ingreso-categoria',
+    //   icon: 'list'
+    // }
 
   ];
 
@@ -59,6 +64,7 @@ export class AppComponent {
 
     this.loginService.isLoggedInApp()
       .subscribe(resp => {
+        console.log(resp)
         this.usuario.displayName = resp.displayName
         this.usuario.photoURL = resp.photoURL
         this.usuario.email = resp.email
@@ -66,7 +72,7 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.router.navigate(['login'])
+    // this.router.navigate(['login'])
     this.platform.ready().then(() => {
       Environment.setEnv({
         'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyD8NKYKzbu_XTSPE6ENTlJqlrDhimxwifw',
