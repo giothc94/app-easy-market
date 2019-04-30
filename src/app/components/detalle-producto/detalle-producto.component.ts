@@ -2,6 +2,7 @@ import { AngularFirebaseService } from './../../services/angular-firebase.servic
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController, NavController, Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -34,7 +35,14 @@ export class DetalleProductoComponent implements OnInit {
 
   marketDetalle
 
-  constructor(private platform: Platform, private navParams: NavParams, private modalController: ModalController, private afDB: AngularFirebaseService, private navController: NavController, private storage: Storage) {
+  constructor(private platform: Platform, 
+    private navParams: NavParams, 
+    private modalController: ModalController, 
+    private afDB: AngularFirebaseService, 
+    private navController: NavController, 
+    private storage: Storage,
+    public toastController: ToastController    
+    ) {
     this.productos = this.navParams.get('listaProductos')
     this.productoId = this.navParams.get('idProducto')
     this.navigate = this.navParams.get('return')
@@ -43,7 +51,7 @@ export class DetalleProductoComponent implements OnInit {
 
   ngOnInit() {
     this.afDB.obtenerProductoPorId(this.productoId).subscribe(resp => {
-      this.producto = resp.payload.data()
+      this.producto = resp
       console.log(this.producto)
       this.afDB.obtenerMarket(this.producto.marketIdProducto).subscribe(resp => {
         this.market = resp.payload.data()
@@ -63,23 +71,8 @@ export class DetalleProductoComponent implements OnInit {
 
   agregarACarrito() {
     this.storage.set(this.productoId, this.cantidad).then(() => {
-      console.log('Producto agregado')
+      this.presentToast()
     })
-    // let id = this.productoId
-    // let flag = this.tempCarrito.find(item => {
-    //   return item == id
-    // })
-    // if (flag) {
-    //   this.storage.keys().then(keys => {
-    //     keys.forEach(llave => {
-    //       if (llave == this.productoId) {
-    //         this.storage.get(llave).then(cantidad => {
-    //           this.storage.set(llave, (cantidad + this.cantidad))
-    //         })
-    //       }
-    //     })
-    //   })
-    // }
 
     this.cerrar()
 
@@ -92,9 +85,12 @@ export class DetalleProductoComponent implements OnInit {
     }
   }
 
-  test() {
-    console.log(this.star)
-    this.star = undefined
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Producto agregado al carrito',
+      duration: 1500
+    });
+    toast.present();
   }
 
 }

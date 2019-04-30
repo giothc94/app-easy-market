@@ -38,7 +38,7 @@
       Primero selecciona una cantidad: <ion-label>{{cantidad}}</ion-label>
     </ion-label>
     <ion-label>
-      <ion-range min="1" max="5" ticks="true" step="1" snaps="true" pin="true" mode="ios" [(ngModel)]="cantidad">
+      <ion-range *ngIf="producto.cantidadProducto > 1"  min="1" max="{{producto.cantidadProducto}}" ticks="true" step="1" snaps="true" pin="true" mode="ios" [(ngModel)]="cantidad">
       </ion-range>
     </ion-label>
     <div class="precio-detalle">
