@@ -1,8 +1,9 @@
+import { AngularFirebaseService } from './../services/angular-firebase.service';
 import { Platform, MenuController, NavParams, NavController } from '@ionic/angular';
 
 import { Component, OnInit } from '@angular/core';
 
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, Marker } from '@ionic-native/google-maps/ngx'
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, Marker, BaseArrayClass } from '@ionic-native/google-maps/ngx'
 import { Environment } from '@ionic-native/google-maps/ngx';
 import { Router } from '@angular/router';
 
@@ -14,11 +15,25 @@ import { Router } from '@angular/router';
 export class HomePage implements OnInit {
   map: GoogleMap;
 
-  constructor(private platform: Platform, 
-    private menuCtrl: MenuController, 
-    private router: Router,
-    ) {
+  positions = []
 
+  constructor(
+    private platform: Platform,
+    private menuCtrl: MenuController,
+    private router: Router,
+    private afs: AngularFirebaseService
+  ) {
+    this.afs.obtenerMarkets().snapshotChanges()
+      .subscribe(resp => {
+        resp.forEach(market => {
+          let mkt: any = market.payload.doc.data()
+          let punto: any = {}
+          punto.position = { lat: mkt.position._lat, lng: mkt.position._long }
+          punto.title = mkt.nombre_comercial
+          this.positions.push(punto)
+        })
+        this.cargarMarcadores(this.positions)
+      })
   }
 
   async ngOnInit() {
@@ -37,21 +52,10 @@ export class HomePage implements OnInit {
     });
 
     this.map = GoogleMaps.create('map_canvas')
-    this.map.setCameraZoom(15)
-    let marker: Marker = this.map.addMarkerSync({
-      title: `Central carnivery`,
-      icon: 'blue',
-      animation: 'DROP',
-      position: {
-        lat: -0.2537994,
-        lng: -78.512753
-      }
-    });
-    marker.showInfoWindow()
     this.map.one(GoogleMapsEvent.MAP_READY)
       .then(this.onMapReady.bind(this))
   }
-  onMapReady(){
+  onMapReady() {
     console.log('mapa cargado correctamente')
   }
 
@@ -63,6 +67,24 @@ export class HomePage implements OnInit {
   }
   redirectTiendas() {
     this.router.navigate(['list'])
+  }
+  cargarMarcadores(data) {
+    this.map.clear()
+    let MARCADORES: BaseArrayClass<any> = new BaseArrayClass<any>(data)
+    MARCADORES.forEach(data => {
+      data.disableAutoPan = false
+      let marker: Marker = this.map.addMarkerSync(data)
+      marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(this.onMarkerClick);
+      marker.on(GoogleMapsEvent.INFO_CLICK).subscribe(this.onMarkerClick);
+    })
+    this.map.setCameraTarget({
+      lat: -0.1798809,
+      lng: -78.4800328
+    })
+    this.map.setCameraZoom(8)
+  }
+  onMarkerClick(params: any) {
+    let marker: Marker = <Marker>params[1];
   }
 
 }
