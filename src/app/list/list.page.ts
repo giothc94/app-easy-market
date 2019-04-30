@@ -18,8 +18,8 @@ export class ListPage implements OnInit {
   query:any = ''
 
   constructor(private afDB: AngularFirebaseService, private router:Router, private platform:Platform) {
-    this.itemsList = []
     this.afDB.obtenerMarkets().snapshotChanges().subscribe(items=>{
+      this.itemsList = []
       items.forEach(data=>{
         this.itemsList.push(data.payload.doc.data())
       })
@@ -29,13 +29,9 @@ export class ListPage implements OnInit {
   }
 
   entrarTienda(id){
-    this.router.navigate([`tienda/${id}`])
+    this.router.navigate([`tienda/${id}`,{id:id}])
   }
 
   ngOnInit() {
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
 }

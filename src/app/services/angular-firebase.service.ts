@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,7 @@ export class AngularFirebaseService {
     return this.afDB.collection('productos-app')
   }
   obtenerProductoPorId(id){
-    return this.afDB.collection('productos-app').doc(id).snapshotChanges()
+    return this.afDB.collection('productos-app').doc(id).valueChanges()//.snapshotChanges()
   }
 
   guardarCategoria(categoria) {

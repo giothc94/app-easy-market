@@ -8,31 +8,34 @@
 </ion-header>
 
 <ion-content>
-  <div class="flex-conten">
     <ion-searchbar [(ngModel)]="query"></ion-searchbar>
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
-    <div class="card-prod" *ngFor="let producto of productos | search:query">
-      <div class="card-title">
-        <ion-label>{{producto.nombreProducto | uppercase}}</ion-label>
-      </div>
-      <img src="{{producto.downloadURL}}" alt="" class="card-img">
-      <div class="card-prod-conten">
-        {{producto.descripcionProducto}}
-        <p><small>{{producto.cantidadProducto > 5 ? 'Disponible':'No disponible'}}</small></p>
-        <ion-badge color="warning" style="font-size: 13px" (click)="detalleProducto(producto.id)">
-          {{producto.precioProducto | currency}}
-        </ion-badge>
-        <label for="" style="margin: 5px">Cada {{producto.pesoVentaProducto}}</label>
+    <div class="flex-conten">
+      <div *ngFor="let producto of productos | search:query">
+        <div class="card-prod" *ngIf="producto.cantidadProducto > 0">
+          <div class="card-title">
+            <ion-label>{{producto.nombreProducto | uppercase}}</ion-label>
+          </div>
+          <ion-img [src]="producto.downloadURL"></ion-img>
+          <div class="card-prod-conten">
+            {{producto.descripcionProducto}}
+            <p><small>{{producto.cantidadProducto > 5 ? 'Disponible':'No disponible'}}<ion-badge color="danger"
+                  *ngIf="producto.cantidadProducto < 5">{{producto.cantidadProducto}}</ion-badge></small></p>
+            <ion-badge color="warning" style="font-size: 13px" (click)="detalleProducto(producto.id)">$
+              {{producto.precioProducto}}
+            </ion-badge>
+            <label for="" style="margin: 5px">Cada {{producto.pesoVentaProducto}}</label>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="popover">
-    <ion-fab-button (click)="popoverCarrito($event)">
-      <img style="width: 20px; height: 20px"
-        src="https://firebasestorage.googleapis.com/v0/b/pagina-easy-market.appspot.com/o/assets%2F_ionicons_svg_md-cart.svg?alt=media&token=b6c6154d-8a59-476b-9884-4e8ceb09b6aa"
-        alt="">
-    </ion-fab-button>
-  </ion-fab>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="popover">
+      <ion-fab-button (click)="popoverCarrito($event)">
+        <img style="width: 20px; height: 20px"
+          src="https://firebasestorage.googleapis.com/v0/b/pagina-easy-market.appspot.com/o/assets%2F_ionicons_svg_md-cart.svg?alt=media&token=b6c6154d-8a59-476b-9884-4e8ceb09b6aa"
+          alt="">
+      </ion-fab-button>
+    </ion-fab>
 </ion-content>

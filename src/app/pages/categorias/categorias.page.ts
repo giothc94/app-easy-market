@@ -20,6 +20,7 @@ export class CategoriasPage implements OnInit {
 
   obtenerCategorias(){
     this.afDB.obtenerCategorias().snapshotChanges().subscribe(data => {
+      this.categorias = []
       data.forEach(cat => {
         this.categorias.push(cat.payload.doc.data())
       })

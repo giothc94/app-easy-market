@@ -30,7 +30,12 @@ export class TiendaPage implements OnInit {
 
   productos = []
 
+  idTienda
+
   constructor(private activatedRoute: ActivatedRoute, private afDB: AngularFirebaseService, private platform: Platform, public modalController: ModalController) {
+    
+    this.idTienda = this.activatedRoute.snapshot.paramMap.get('id')
+    
     this.obtenerProductos()
     let id = this.activatedRoute.snapshot.params.id
     this.afDB.obtenerMarket(id).subscribe(data => {
@@ -43,6 +48,7 @@ export class TiendaPage implements OnInit {
     })
 
     this.afDB.obtenerProductoPorMarket(id).get().then(result => {
+      this.productosDeLaTienda = []
       result.forEach(resp => {
         this.productosDeLaTienda.push(resp.data())
       })
@@ -53,20 +59,33 @@ export class TiendaPage implements OnInit {
   }
 
   loadMap() {
-    this.map = GoogleMaps.create('map_canvas')
-    this.map.setCameraZoom(15)
+    console.log(this.market)
+    this.map = GoogleMaps.create('map_canvas',{
+      camera: {
+        target: {
+          lat: this.market.position._lat,
+          lng: this.market.position._long
+        },
+        zoom: 14
+      }
+    })
     let marker: Marker = this.map.addMarkerSync({
       title: `${this.market.nombre_comercial}`,
       icon: 'blue',
       animation: 'DROP',
       position: {
-        lat: -0.2537994,
-        lng: -78.512753
+        lat: this.market.position._lat,
+        lng: this.market.position._long
       }
     });
-    marker.showInfoWindow()
+    // this.map.setCameraZoom(18)
+    marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(this.onMarkerClick);
+    marker.on(GoogleMapsEvent.INFO_CLICK).subscribe(this.onMarkerClick);
     this.map.one(GoogleMapsEvent.MAP_READY)
       .then(this.onMapReady.bind(this))
+  }
+  onMarkerClick(params: any) {
+    let marker: Marker = <Marker>params[1];
   }
 
   onMapReady() {
@@ -83,7 +102,7 @@ export class TiendaPage implements OnInit {
   async popoverCarrito(ev: any) {
     const modal = await this.modalController.create({
       component: PopoverCarritoComponent,
-      componentProps: { listaProductos: this.productos, return: `null` }
+      componentProps: { listaProductos: this.productos, return: `tienda/${this.idTienda}` }
     })
     return await modal.present()
   }
@@ -91,7 +110,7 @@ export class TiendaPage implements OnInit {
   async detalleProducto(id) {
     const modal = await this.modalController.create({
       component: DetalleProductoComponent,
-      componentProps: { idProducto: `${id}`, listaProductos: this.productos, return: `null`, marketDetalle: false }
+      componentProps: { idProducto: `${id}`, listaProductos: this.productos, return: `tienda/${this.idTienda}`, marketDetalle: false }
     })
     return await modal.present()
   }
