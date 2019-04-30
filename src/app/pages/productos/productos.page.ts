@@ -28,8 +28,8 @@ export class ProductosPage implements OnInit {
   }
 
   obtenerProductos(){
-    this.productos = []
     this.afDB.obtenerProductos().snapshotChanges().subscribe(data => {
+      this.productos = []
       data.forEach(prod => {
         this.productos.push(prod.payload.doc.data())
       })

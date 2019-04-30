@@ -13,19 +13,21 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <div class="flex-conten">
-    <div class="card-prod" *ngFor="let producto of productos | search:query">
-      <div class="card-title">
-        <ion-label>{{producto.nombreProducto | uppercase}}</ion-label>
-      </div>
-      <ion-img [src]="producto.downloadURL"></ion-img>
-      <!-- <img src="{{producto.downloadURL}}" alt="" class="card-img"> -->
-      <div class="card-prod-conten">
-        {{producto.descripcionProducto}}
-        <p><small>{{producto.cantidadProducto > 5 ? 'Disponible':'No disponible'}}</small></p>
-        <ion-badge color="warning" style="font-size: 13px" (click)="detalleProducto(producto.id)">$
-          {{producto.precioProducto}}
-        </ion-badge>
-        <label for="" style="margin: 5px">Cada {{producto.pesoVentaProducto}}</label>
+    <div *ngFor="let producto of productos | search:query">
+      <div class="card-prod" *ngIf="producto.cantidadProducto > 0">
+        <div class="card-title">
+          <ion-label>{{producto.nombreProducto | uppercase}}</ion-label>
+        </div>
+        <ion-img [src]="producto.downloadURL"></ion-img>
+        <div class="card-prod-conten">
+          {{producto.descripcionProducto}}
+          <p><small>{{producto.cantidadProducto > 5 ? 'Disponible':'No disponible'}}<ion-badge color="danger"
+                *ngIf="producto.cantidadProducto < 5">{{producto.cantidadProducto}}</ion-badge></small></p>
+          <ion-badge color="warning" style="font-size: 13px" (click)="detalleProducto(producto.id)">$
+            {{producto.precioProducto}}
+          </ion-badge>
+          <label for="" style="margin: 5px">Cada {{producto.pesoVentaProducto}}</label>
+        </div>
       </div>
     </div>
   </div>
