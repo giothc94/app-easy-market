@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home" (click)="cerrar()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Mis listas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header style="font-size: 20px;margin: 15px 0;">
+      Listas de compras realizadas
+    </ion-list-header>
+    <div *ngFor="let lista of listaProductosComprados">
+      <ion-card-subtitle style="display: flex;justify-content: space-between; padding: 0 30px;margin-bottom: 10px">
+        <ion-label style="display: flex;align-items: center;">Lista del {{lista.id | date:'fullDate'}}</ion-label>
+        <ion-icon name="add" style="font-size: 30px;color:#0ec254;;border: 1px solid #0ec254;;border-radius: 50%;"></ion-icon>
+      </ion-card-subtitle>
+    </div>
+  </ion-list>
+</ion-content>
