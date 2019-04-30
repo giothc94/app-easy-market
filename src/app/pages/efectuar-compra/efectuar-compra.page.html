@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="{{navigate}}" (click)="cerrar()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Efectuar compra</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="card-compra-efectiva">
+    <ion-card-header>
+      <ion-card-subtitle>Datos del usuario:</ion-card-subtitle>
+      <ion-card-header>
+        <ion-card-subtitle>Nombre:</ion-card-subtitle>
+        {{usuario.nombres}}
+        <ion-card-subtitle>Cedula:</ion-card-subtitle>
+        {{usuario.cedula}}
+        <ion-card-subtitle>Email:</ion-card-subtitle>
+        {{usuario.email}}
+        <ion-card-subtitle>Telefono:</ion-card-subtitle>
+        {{usuario.telefono}}
+      </ion-card-header>
+    </ion-card-header>
+    <div class="img-compra-efectiva">
+      <img src="{{usuario.imgUser}}" alt="user-photo"
+        style="height: 70px;border-radius: 50%;border: 3px solid lightgrey;">
+    </div>
+  </div>
+
+  <div>
+    <ion-list>
+      <ion-list-header>
+        Lista de compras
+      </ion-list-header>
+      <ion-item *ngFor="let producto of listaProductos">
+        <label>{{producto.nombreProducto | uppercase}}</label>
+        <label for="" slot="end">
+          <ion-badge>{{producto.cantidadCompra}}u</ion-badge>
+          {{producto.cantidadCompra * producto.precioProducto | currency}}
+        </label>
+      </ion-item>
+    </ion-list>
+    <div style="display: flex; justify-content: flex-end">
+      <ion-card-header>
+        <p><b>Precio total por la compra:</b> {{precioTotal | currency}}</p>
+      </ion-card-header>
+    </div>
+  </div>
+
+  <ion-button expand="block" color="success" (click)="comprar()">
+    Comprar !
+  </ion-button>
+  <ion-item *ngFor="let prod of listaComprados">
+    {{prod.id}}<br>
+    {{prod.cantidadProducto}}
+  </ion-item>
+</ion-content>
